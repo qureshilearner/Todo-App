@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0-alpha4/mdb.min.css" rel="stylesheet" />
+    <!-- MDB -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0-alpha4/mdb.min.js"></script>
+    <title>Todo-App</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+        integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+        crossorigin="anonymous"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBd7_bs-Ji6JSuMYDr9jWLyhCfUnnpGQ0c",
+            authDomain: "todo-app-f3110.firebaseapp.com",
+            databaseURL: "https://todo-app-f3110.firebaseio.com",
+            projectId: "todo-app-f3110",
+            storageBucket: "todo-app-f3110.appspot.com",
+            messagingSenderId: "921384860426",
+            appId: "1:921384860426:web:c4ca8a7a6c09602a5018f3",
+            measurementId: "G-T8RR9BT567"
+        }
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+    </script>
+</head>
+
+<body style="height: 100vh;">
+    <!-- <div class="d-flex justify-content-center align-items-center" style="height: inherit;">a</div> -->
+    <div class="d-flex justify-content-center align-items-center flex-column user-select-none">
+        <div class="col-md-4 col-12 mt-3 mb-0 alert text-center d-none" id="info"></div>
+        <!-- Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert mb-2 p-0 text-center alert-info" id="msg"></div>
+                        <input type="text" id="updater" onkeyup="toggle(this)" class="form-control"
+                            placeholder="updated item..." aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary" id="save" onclick="saveChanges(this)"
+                            data-dismiss="modal">Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-3" style="width: 25rem;">
+            <div class="col-12 justify-content-center align-items-center h-100 position-absolute spiner d-none" style="backdrop-filter: blur(2px);
+            background: #e9e9e9a6;">
+                <div class="spinner-border text-primary" role="status" aria-hidden="true"></div>
+            </div>
+            <div class="card-header text-center">
+                Todo-App
+            </div>
+            <div class="card-body">
+                <label for="txt">
+                    <h6 class="card-title">Add Your Items In List</h6>
+                </label>
+                <div class="row g-0 mb-1">
+                    <div class="card-text mb-2 mr-1 col-md-9 col-12">
+                        <input type="text" id="txt" class="form-control" placeholder="type item here..."
+                            aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="card-text col-md-2 col-12">
+                        <button type="button" class="btn btn-primary btn-xs px-3 dbtn col-12"
+                            id="basic-addon2">Add</button>
+                    </div>
+                </div>
+                <h6 class="card-title mt-2 mb-0" id="list-header"></h6>
+                <ul class="list-group list-group-flush" id="list" style="overflow-y: auto;
+                height: 15rem;">
+                </ul>
+
+            </div>
+            <div class="card-footer text-right">
+                By M.Faizan Qureshi
+            </div>
+        </div>
+    </div>
+    <script src="./app.js" type="text/javascript"></script>
+</body>
+
+</html>
